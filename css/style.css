@@ -68,6 +68,7 @@ h1.main-header {
   border-radius: 15px;
   border: 1px solid var(--primary);
   outline: none;
+  color: #555;
 }
 
 .search::placeholder, .search-p {
