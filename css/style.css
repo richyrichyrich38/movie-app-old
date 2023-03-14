@@ -67,9 +67,46 @@ h1.main-header {
   padding: 7px 15px;
   border-radius: 15px;
   border: 1px solid var(--primary);
+  outline: none;
 }
 
-.search::placeholder {
+.search::placeholder, .search-p {
   text-align: center;
   color: var(--primary);
+}
+
+.search-p {
+  text-align: center;
+  color: var(--primary);
+  padding-bottom: 20px;
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  padding: 0 5%;
+}
+
+main .movie-item {
+  border: 1px solid var(--primary);
+  /* background: url('https://api.lorem.space/image/movie?w=150&h=220'), rgba(0, 0, 0, 0.5); */
+  padding: 10px;
+}
+
+main .movie-item > *:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+main .movie-item h3{
+  color: var(--primary);
+}
+
+main .movie-item p {
+  color: #777;
+}
+
+main .movie-item a {
+  color: var(--primary);
+  border-bottom: 1px dashed;
 }
