@@ -1,0 +1,75 @@
+/* Variables */
+:root {
+  --primary: rgb(83, 79, 79);
+}
+
+/* Resets */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Global Classes */
+.row, .column {
+  display: flex;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-space-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+/* Custom Styles */
+header {
+  padding: 9px 5%;
+  background: var(--primary);
+}
+
+header h2, header nav i {
+  color: #fff;
+}
+
+header nav i {
+  font-size: 1.5rem;
+  padding: 0 2px;
+}
+
+/* Content Styles */
+h1.main-header {
+  text-align: center;
+  margin: 15px 0;
+  color: var(--primary);
+}
+
+.search {
+  width: 350px;
+  margin: 0 auto 30px;
+  padding: 7px 15px;
+  border-radius: 15px;
+  border: 1px solid var(--primary);
+}
+
+.search::placeholder {
+  text-align: center;
+  color: var(--primary);
+}
