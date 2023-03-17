@@ -4,12 +4,21 @@
 // Inject movie items into the dom based on users search
 
 
-let searchInput = document.getElementById('#search');
+let searchInput = document.querySelector('.search');
+let itemWrapper = document.querySelector('main')
 
 
 
 
+function getMovieData(event) {
+  var keyCode = event.keyCode;
+  var searchText = searchInput.value.trim()
 
+  if (keyCode === 13) {
+    for(searchText)
+  };
+  console.log(keyCode);
+}
 
 
 
@@ -20,7 +29,7 @@ let searchInput = document.getElementById('#search');
 
 
 function init() {
-  onclick.getMovieData(keydown, )
+  searchInput.addEventListener('keydown', getMovieData)
 
 }
 
