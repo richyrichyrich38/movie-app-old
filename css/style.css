@@ -93,9 +93,9 @@ main .movie-item {
   border: 3px solid var(--primary);
   border-radius: 5px;
   padding: 15px 10px;
-  background-image: 
+  /* background-image: 
     linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-    url(https://api.lorem.space/image/movie?w=150&h=220);
+    url(https://api.lorem.space/image/movie?w=150&h=220); */
   padding: 10px;
   background-position: center;
   background-size: cover;
