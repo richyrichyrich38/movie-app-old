@@ -15,16 +15,16 @@ function displayMatches(matches) {
   for (match of matches) {
     itemWrapper.insertAdjacentHTML("beforeend", `
     <div class="movie-item" style="background-image: 
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${match.image_url})">
-    <h3>${match.title}</h3>
-    <p>${match.description}</p>
-    <a href="${match.imdb_url}" target="_blank">View More Details</a>
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${match.Poster})">
+    <h3>${match.Title}</h3>
+    <p>Release Year: ${match.Year}</p>
+    <a href="https://www.imdb.com/title/${match.imdbID}/" target="_blank">View More Details</a>
     </div>
     `)
 
     console.log(match);
   }
-}``
+}
 
 
 function getMovieData(event) {
@@ -32,27 +32,16 @@ function getMovieData(event) {
   var searchText = searchInput.value.trim().toLowerCase()
 
   if (keyCode === 13 && searchText) {
-    var matches = [];
-
-    for (movie of movieData) {
-      if (movie.title.toLowerCase().includes(searchText)) {
-        matches.push(movie)
-        
-      }
-
-
-    }
 
     // FETCH REQUEST V3 - MODERN JS
     fetch(`https://www.omdbapi.com/?apikey=2fd1d9f2&s=${searchText}`)
      .then(res => res.json())
-     .then(data => console.log(data))
-      
+     .then(data => displayMatches(data.Search))
+    }
     
-    displayMatches(matches)
-  };
+  }
  
-}
+
 
 
 
