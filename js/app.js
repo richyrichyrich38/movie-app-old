@@ -18,7 +18,7 @@ function displayMatches(matches) {
     linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${match.Poster})">
     <h3>${match.Title}</h3>
     <p>Release Year: ${match.Year}</p>
-    <a href="https://www.imdb.com/title/${match.imdbID}/" target="_blank">View More Details</a>
+    <a data-id="${match.imdbID}" href="" target="_blank">View More Details</a>
     </div>
     `)
 
@@ -42,13 +42,45 @@ function getMovieData(event) {
   }
  
 
+function showMoviedetails(movieId) {
+  fetch(`https://www.omdbapi.com/?apikey=2fd1d9f2&i=${movieId}`)
+     .then(res => res.json())
+     .then(function (data) {
+      var detailedDisplay = document.querySelector('.detailed-display');
 
+      detailedDisplay.innerHTML = `
+
+        <h2>Title: ${data.Title}</h2>
+        <h3>Released: ${data.Released}</h3>
+        <p><strong>Rated:</strong> ${data.Rated}</p>
+        <p><strong>Genre:</strong> ${data.Genre}</p>
+        <p><strong>Writers:</strong> ${data.Writer}</p> 
+        <p><strong>Actors:</strong> ${data.Actors}</p>
+        <p><strong>Plot:</strong> ${data.Plot}</p>
+        <p><strong>Language:</strong> ${data.Language}</p>
+        <p><strong>Country:</strong> ${data.Country}</p>
+        <p><strong>Awards:</strong> ${data.Awards}</p>
+        <a href="https://www.imdb.com/title/${data.imdbID}/" target="_blank">View IMDb Page</a>
+
+      `
+
+      detailedDisplay.classList.remove('hide')
+     })
+}
 
 
 
 function init() {
   searchInput.addEventListener('keydown', getMovieData)
+  itemWrapper.addEventListener('click', function(event) {
+    event.preventDefault();
 
+    var el = event.target;
+
+    if(el.tagName === 'A') {
+      showMoviedetails(el.dataset.id)
+    }
+  })
 }
 
 init();
