@@ -7,6 +7,7 @@
 let searchInput = document.querySelector('.search');
 let itemWrapper = document.querySelector('main');
 let searchPara = document.querySelector('.search-p');
+var detailedDisplay = document.querySelector('.detailed-display');
 
 function displayMatches(matches) {
   itemWrapper.innerHTML = '';
@@ -46,7 +47,7 @@ function showMoviedetails(movieId) {
   fetch(`https://www.omdbapi.com/?apikey=2fd1d9f2&i=${movieId}`)
      .then(res => res.json())
      .then(function (data) {
-      var detailedDisplay = document.querySelector('.detailed-display');
+      
 
       detailedDisplay.innerHTML = `
 
@@ -81,6 +82,9 @@ function init() {
       showMoviedetails(el.dataset.id)
     }
   })
+  detailedDisplay.addEventListener('click', function (event) {
+    detailedDisplay.classList.add('hide');
+  });
 }
 
 init();
