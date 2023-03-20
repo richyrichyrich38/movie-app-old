@@ -42,29 +42,11 @@ function getMovieData(event) {
 
 
     }
-    // FETCH REQUEST 1
-    // var responsePromise = fetch('https://www.omdbapi.com/?apikey=2fd1d9f2&s=jurassic')
-    
-    // responsePromise.then(function (responseObj) {
-    //   var dataPromise = responseObj.json();
 
-    //   dataPromise.then(function(data){
-    //     console.log(data);
-    //   })
-
-
-    // FETCH REQUEST 2
-    var responsePromise = fetch('https://www.omdbapi.com/?apikey=2fd1d9f2&s=jurassic')
-
-    function handleResponse(responseObj) {
-      return responseObj.json();
-    }
-    
-    responsePromise
-      .then(handleResponse)
-      .then(function (data) {
-        console.log(data);
-      })
+    // FETCH REQUEST V3 - MODERN JS
+    fetch('https://www.omdbapi.com/?apikey=2fd1d9f2&s=jurassic')
+     .then(res => res.json())
+     .then(data => console.log(data))
       
     
     displayMatches(matches)
