@@ -44,20 +44,15 @@ function getMovieData(event) {
     }
 
     // FETCH REQUEST V3 - MODERN JS
-    fetch('https://www.omdbapi.com/?apikey=2fd1d9f2&s=jurassic')
+    fetch(`https://www.omdbapi.com/?apikey=2fd1d9f2&s=${searchText}`)
      .then(res => res.json())
      .then(data => console.log(data))
       
     
     displayMatches(matches)
   };
-  // console.log(keyCode);
+ 
 }
-
-
-
-
-
 
 
 
