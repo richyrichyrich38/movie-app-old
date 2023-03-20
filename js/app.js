@@ -15,16 +15,16 @@ function displayMatches(matches) {
   for (match of matches) {
     itemWrapper.insertAdjacentHTML("beforeend", `
     <div class="movie-item" style="background-image: 
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${match.image_url})">
-    <h3>${match.title}</h3>
-    <p>${match.description}</p>
-    <a href="${match.imdb_url}" target="_blank">View More Details</a>
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${match.Poster})">
+    <h3>${match.Title}</h3>
+    <p>Release Year: ${match.Year}</p>
+    <a data-id="${match.imdbID}" href="" target="_blank">View More Details</a>
     </div>
     `)
 
     console.log(match);
   }
-}``
+}
 
 
 function getMovieData(event) {
@@ -32,39 +32,55 @@ function getMovieData(event) {
   var searchText = searchInput.value.trim().toLowerCase()
 
   if (keyCode === 13 && searchText) {
-    var matches = [];
-
-    for (movie of movieData) {
-      if (movie.title.toLowerCase().includes(searchText)) {
-        matches.push(movie)
-        
-      }
-
-
-    }
 
     // FETCH REQUEST V3 - MODERN JS
-    fetch('https://www.omdbapi.com/?apikey=2fd1d9f2&s=jurassic')
+    fetch(`https://www.omdbapi.com/?apikey=2fd1d9f2&s=${searchText}`)
      .then(res => res.json())
-     .then(data => console.log(data))
-      
+     .then(data => displayMatches(data.Search))
+    }
     
-    displayMatches(matches)
-  };
-  // console.log(keyCode);
+  }
+ 
+
+function showMoviedetails(movieId) {
+  fetch(`https://www.omdbapi.com/?apikey=2fd1d9f2&i=${movieId}`)
+     .then(res => res.json())
+     .then(function (data) {
+      var detailedDisplay = document.querySelector('.detailed-display');
+
+      detailedDisplay.innerHTML = `
+
+        <h2>Title: ${data.Title}</h2>
+        <h3>Released: ${data.Released}</h3>
+        <p><strong>Rated:</strong> ${data.Rated}</p>
+        <p><strong>Genre:</strong> ${data.Genre}</p>
+        <p><strong>Writers:</strong> ${data.Writer}</p> 
+        <p><strong>Actors:</strong> ${data.Actors}</p>
+        <p><strong>Plot:</strong> ${data.Plot}</p>
+        <p><strong>Language:</strong> ${data.Language}</p>
+        <p><strong>Country:</strong> ${data.Country}</p>
+        <p><strong>Awards:</strong> ${data.Awards}</p>
+        <a href="https://www.imdb.com/title/${data.imdbID}/" target="_blank">View IMDb Page</a>
+
+      `
+
+      detailedDisplay.classList.remove('hide')
+     })
 }
-
-
-
-
-
-
 
 
 
 function init() {
   searchInput.addEventListener('keydown', getMovieData)
+  itemWrapper.addEventListener('click', function(event) {
+    event.preventDefault();
 
+    var el = event.target;
+
+    if(el.tagName === 'A') {
+      showMoviedetails(el.dataset.id)
+    }
+  })
 }
 
 init();
