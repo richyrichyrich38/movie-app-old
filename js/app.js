@@ -42,6 +42,13 @@ function getMovieData(event) {
 
 
     }
+
+    fetch('https://www.omdbapi.com/?apikey=2fd1d9f2&s=jurassic')
+      .then(function (responseObj) {
+        var dataPromise = responseObj.json()
+        console.log(dataPromise);
+      });
+
     displayMatches(matches)
   };
   // console.log(keyCode);
