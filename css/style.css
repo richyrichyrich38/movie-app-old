@@ -1,6 +1,7 @@
 /* Variables */
 :root {
   --primary: rgb(83, 79, 79);
+  --niceGray: rgb(129, 125, 125);
 }
 
 /* Resets */
@@ -103,7 +104,7 @@ h1.main-header {
   border-radius: 15px;
   border: 1px solid var(--primary);
   outline: none;
-  color: #555;
+  color: var(--niceGray);
 }
 
 .search::placeholder, .search-p {
@@ -113,7 +114,7 @@ h1.main-header {
 
 .search-p {
   text-align: center;
-  color: var(--primary);
+  color: var(--niceGray);
   padding-bottom: 20px;
 }
 

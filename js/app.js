@@ -12,6 +12,11 @@ var detailedDisplay = document.querySelector('.detailed-display');
 function displayMatches(matches) {
   itemWrapper.innerHTML = '';
   searchPara.innerHTML = '';
+  console.log(matches);
+
+  if (!matches) {
+    searchPara.innerHTML = `<p class="search-p">No matches found</p>`
+  }
 
   for (match of matches) {
     itemWrapper.insertAdjacentHTML("beforeend", `
