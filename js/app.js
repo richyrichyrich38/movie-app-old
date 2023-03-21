@@ -15,7 +15,7 @@ function displayMatches(matches) {
   console.log(matches);
 
   if (!matches) {
-    searchPara.innerHTML = `<p class="search-p">No matches found</p>`
+    return searchPara.innerHTML = `<p class="search-p">No matches found</p>`
   }
 
   for (match of matches) {
