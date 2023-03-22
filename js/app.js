@@ -9,9 +9,11 @@ let itemWrapper = document.querySelector('main');
 let searchPara = document.querySelector('.search-p');
 var detailedDisplay = document.querySelector('.detailed-display');
 
+
 function displayMatches(matches) {
   itemWrapper.innerHTML = '';
   searchPara.innerHTML = '';
+  searchInput.value = ''
   console.log(matches);
 
   if (!matches) {
@@ -38,11 +40,12 @@ function getMovieData(event) {
   var searchText = searchInput.value.trim().toLowerCase()
 
   if (keyCode === 13 && searchText) {
-
+    
     // FETCH REQUEST V3 - MODERN JS
     fetch(`https://www.omdbapi.com/?apikey=2fd1d9f2&s=${searchText}`)
      .then(res => res.json())
      .then(data => displayMatches(data.Search))
+     searchInput.innerHTML = '';
     }
     
   }
